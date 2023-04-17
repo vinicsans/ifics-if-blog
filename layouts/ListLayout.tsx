@@ -97,6 +97,7 @@ export default function ListLayout({
       ? initialDisplayPosts
       : filteredBlogPosts;
 
+  let i = 0
   return (
     <>
       <div className="divide-y divide-slate-500  bg-slate-950">
@@ -140,6 +141,8 @@ export default function ListLayout({
             {!filteredBlogPosts.length && "Nenhuma história encontrada"}
           </div>
           {displayPosts.map((post) => {
+            i++
+            console.log(i)
             const { path, title, summary, tags } = post;
             return (
               <li
@@ -150,9 +153,11 @@ export default function ListLayout({
                   <div className="mr-6 h-56 w-56 max-sm:h-32 max-sm:w-32 sm:h-32 sm:w-32 md:h-48 md:w-48">
                     <a href={`/${path}`}>
                       <Image
-                        src={ImageSrc1}
+                        src={`/static/images/image${i}.jpg`}
                         alt="null"
-                        className="h-full w-full rounded-3xl"
+                        className="h-full w-full rounded-3xl border-slate-800 border-2"
+                        width={224}
+                        height={224}
                       />
                     </a>
                   </div>
