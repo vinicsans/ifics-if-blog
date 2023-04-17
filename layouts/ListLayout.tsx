@@ -1,44 +1,51 @@
-import { useState } from 'react'
-import { useRouter } from 'next/router'
-import { formatDate } from 'pliny/utils/formatDate'
-import { CoreContent } from 'pliny/utils/contentlayer'
-import type { Blog } from 'contentlayer/generated'
-import Link from '@/components/Link'
-import Tag from '@/components/Tag'
-import siteMetadata from '@/data/siteMetadata'
+import { useState } from "react";
+import { useRouter } from "next/router";
+import { formatDate } from "pliny/utils/formatDate";
+import { CoreContent } from "pliny/utils/contentlayer";
+import type { Blog } from "contentlayer/generated";
+import Link from "@/components/Link";
+import Tag from "@/components/Tag";
+import siteMetadata from "@/data/siteMetadata";
 
-import Image from 'next/image'
-import ImageSrc1 from "../public/static/images/image1.png"
-import SparklesIcon from "../public/static/images/sparkle.svg"
-import ArrowRightIcon from "../public/static/images/arrow-right.svg"
+import Image from "next/image";
+import ImageSrc1 from "../public/static/images/image1.png";
+import SparklesIcon from "../public/static/images/sparkle.svg";
+import ArrowRightIcon from "../public/static/images/arrow-right.svg";
 
 interface PaginationProps {
-  totalPages: number
-  currentPage: number
+  totalPages: number;
+  currentPage: number;
 }
 interface ListLayoutProps {
-  posts: CoreContent<Blog>[]
-  title: string
-  initialDisplayPosts?: CoreContent<Blog>[]
-  pagination?: PaginationProps
+  posts: CoreContent<Blog>[];
+  title: string;
+  initialDisplayPosts?: CoreContent<Blog>[];
+  pagination?: PaginationProps;
 }
 
 function Pagination({ totalPages, currentPage }: PaginationProps) {
-  const basePath = "blog"
-  const prevPage = currentPage - 1 > 0
-  const nextPage = currentPage + 1 <= totalPages
+  const basePath = "blog";
+  const prevPage = currentPage - 1 > 0;
+  const nextPage = currentPage + 1 <= totalPages;
 
   return (
-    <div className="space-y-2 pt-6 pb-8 md:space-y-5">
+    <div className="space-y-2 pb-8 pt-6 md:space-y-5">
       <nav className="flex justify-between">
         {!prevPage && (
-          <button className="cursor-auto disabled:opacity-50" disabled={!prevPage}>
+          <button
+            className="cursor-auto disabled:opacity-50"
+            disabled={!prevPage}
+          >
             Anterior
           </button>
         )}
         {prevPage && (
           <Link
-            href={currentPage - 1 === 1 ? `/${basePath}/` : `/${basePath}/page/${currentPage - 1}`}
+            href={
+              currentPage - 1 === 1
+                ? `/${basePath}/`
+                : `/${basePath}/page/${currentPage - 1}`
+            }
             rel="prev"
           >
             Anterior
@@ -48,7 +55,10 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
           {currentPage} de {totalPages}
         </span>
         {!nextPage && (
-          <button className="cursor-auto disabled:opacity-50" disabled={!nextPage}>
+          <button
+            className="cursor-auto disabled:opacity-50"
+            disabled={!nextPage}
+          >
             Próxima
           </button>
         )}
@@ -59,7 +69,7 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
         )}
       </nav>
     </div>
-  )
+  );
 }
 
 export default function ListLayout({
@@ -67,25 +77,29 @@ export default function ListLayout({
   initialDisplayPosts = [],
   pagination,
 }: ListLayoutProps) {
-  const [searchValue, setSearchValue] = useState('')
+  const [searchValue, setSearchValue] = useState("");
   const filteredBlogPosts = posts.filter((post) => {
-    const searchContent = post.title + post.summary + post.tags.join(' ')
-    return searchContent.toLowerCase().includes(searchValue.toLowerCase())
-  })
+    const searchContent = post.title + post.summary + post.tags.join(" ");
+    return searchContent.toLowerCase().includes(searchValue.toLowerCase());
+  });
 
   // If initialDisplayPosts exist, display it if no searchValue is specified
   const displayPosts =
-    initialDisplayPosts.length > 0 && !searchValue ? initialDisplayPosts : filteredBlogPosts
+    initialDisplayPosts.length > 0 && !searchValue
+      ? initialDisplayPosts
+      : filteredBlogPosts;
 
   return (
     <>
       <div className="divide-y divide-slate-500  bg-slate-950">
-        <div className="pt-6 pb-8 md:space-y-5">
-          <h1 className="text-3xl flex font-extrabold leading-9 tracking-tight text-amber-500 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-              As Fanfics de 2° Redes
-              <SparklesIcon className="w-16 h-16 ml-4" />
+        <div className="pb-8 pt-6 md:space-y-5">
+          <h1 className="flex text-3xl font-extrabold leading-9 tracking-tight text-amber-500 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+            As Fanfics de 2° Redes
+            <SparklesIcon className="ml-4 h-16 w-16" />
           </h1>
-          <p className="text-xl mb-4">Um conjunto de histórias baseadas em contos de Alan Poe.</p>
+          <p className="mb-4 text-xl">
+            Um conjunto de histórias baseadas em contos de Alan Poe.
+          </p>
 
           <div className="relative max-w-lg">
             <label>
@@ -95,7 +109,7 @@ export default function ListLayout({
                 type="text"
                 onChange={(e) => setSearchValue(e.target.value)}
                 placeholder="Procurar histórias..."
-                className="block w-full rounded-md border text-slate-200 placeholder-slate-400 border-slate-600 bg-slate-700 px-4 py-2 focus:border-amber-500 focus:ring-amber-500 "
+                className="block w-full rounded-md border border-slate-600 bg-slate-700 px-4 py-2 text-slate-200 placeholder-slate-400 focus:border-amber-500 focus:ring-amber-500 "
               />
             </label>
             <svg
@@ -115,44 +129,53 @@ export default function ListLayout({
           </div>
         </div>
         <ul>
-          {!filteredBlogPosts.length && 'No posts found.'}
+          {!filteredBlogPosts.length && "No posts found."}
           {displayPosts.map((post) => {
-            const { path, title, summary, tags } = post
+            const { path, title, summary, tags } = post;
             return (
-              <li key={path} className="py-6 flex items-center justify-center flex-col border-b border-slate-500">
+              <li
+                key={path}
+                className="flex flex-col items-center justify-center border-b border-slate-500 py-6"
+              >
                 <article className="flex items-center">
-                  <div className="w-56 h-56 mr-6 md:w-48 md:h-48 sm:w-32 sm:h-32 max-sm:h-32 max-sm:w-32">
-                    <Image 
+                  <div className="mr-6 h-56 w-56 max-sm:h-32 max-sm:w-32 sm:h-32 sm:w-32 md:h-48 md:w-48">
+                    <Image
                       src={ImageSrc1}
                       alt="null"
-                      className='h-full w-full rounded-3xl'
+                      className="h-full w-full rounded-3xl"
                     />
                   </div>
                   <div className="w-4/5">
                     <div>
-                      <h3 className="text-2xl font-bold leading-8 tracking-tight sm:text-xl max-sm:text-xl mb-2">
+                      <h3 className="mb-2 text-2xl font-bold leading-8 tracking-tight max-sm:text-xl sm:text-xl">
                         <Link href={`/${path}`} className="text-amber-500">
                           {title}
                         </Link>
                       </h3>
                     </div>
-                    <div className="prose max-w-none text-slate-200 text-base max-sm:text-sm">
+                    <div className="prose max-w-none text-base text-slate-200 max-sm:text-sm">
                       {summary}
                     </div>
-                    <a href={`/${path}`} className='text-amber-500 flex items-center py-2'>
+                    <a
+                      href={`/${path}`}
+                      className="flex items-center py-2 text-amber-500"
+                    >
                       Ler história
-                      <ArrowRightIcon className="fill-amber-500 ml-2 h-8"/>
+                      <ArrowRightIcon className="ml-2 h-8 fill-amber-500" />
                     </a>
                   </div>
                 </article>
               </li>
-            )
+            );
           })}
         </ul>
       </div>
       {pagination && pagination.totalPages > 1 && !searchValue && (
-        <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
+        <Pagination
+          currentPage={pagination.currentPage}
+          totalPages={pagination.totalPages}
+        />
       )}
     </>
-  )
+  );
 }

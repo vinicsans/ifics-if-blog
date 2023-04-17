@@ -1,20 +1,20 @@
-import siteMetadata from '@/data/siteMetadata'
-import headerNavLinks from '@/data/headerNavLinks'
-import Logo from '@/data/logo.svg'
-import Link from './Link'
-import MobileNav from './MobileNav'
-import ThemeSwitch from './ThemeSwitch'
+import siteMetadata from "@/data/siteMetadata";
+import headerNavLinks from "@/data/headerNavLinks";
+import Logo from "@/data/logo.svg";
+import Link from "./Link";
+import MobileNav from "./MobileNav";
+import ThemeSwitch from "./ThemeSwitch";
 
 const Header = () => {
   return (
-    <header className="flex items-center justify-between py-10 bg-slate-950 text-amber-500">
+    <header className="flex items-center justify-between bg-slate-950 py-10 text-amber-500">
       <div>
         <Link href="/" aria-label={siteMetadata.headerTitle}>
           <div className="flex items-center justify-between">
             <div className="mr-3">
-              <Logo className="w-24 h-24 border-2 border-amber-500 rounded-full mr-4"/>
+              <Logo className="mr-4 h-24 w-24 rounded-full border-2 border-amber-500" />
             </div>
-            {typeof siteMetadata.headerTitle === 'string' ? (
+            {typeof siteMetadata.headerTitle === "string" ? (
               <div className="hidden h-6 text-2xl font-semibold sm:block">
                 {siteMetadata.headerTitle}
               </div>
@@ -39,7 +39,7 @@ const Header = () => {
         <MobileNav />
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

@@ -1,21 +1,21 @@
-import { useState } from 'react'
-import Link from './Link'
-import headerNavLinks from '@/data/headerNavLinks'
+import { useState } from "react";
+import Link from "./Link";
+import headerNavLinks from "@/data/headerNavLinks";
 
 const MobileNav = () => {
-  const [navShow, setNavShow] = useState(false)
+  const [navShow, setNavShow] = useState(false);
 
   const onToggleNav = () => {
     setNavShow((status) => {
       if (status) {
-        document.body.style.overflow = 'auto'
+        document.body.style.overflow = "auto";
       } else {
         // Prevent scrolling
-        document.body.style.overflow = 'hidden'
+        document.body.style.overflow = "hidden";
       }
-      return !status
-    })
-  }
+      return !status;
+    });
+  };
 
   return (
     <div className="sm:hidden">
@@ -38,8 +38,8 @@ const MobileNav = () => {
         </svg>
       </button>
       <div
-        className={`fixed top-0 left-0 z-10 h-full w-full transform bg-slate-800 opacity-95 duration-300 ease-in-out${
-          navShow ? 'translate-x-0' : 'translate-x-full'
+        className={`fixed left-0 top-0 z-10 h-full w-full transform bg-slate-800 opacity-95 duration-300 ease-in-out${
+          navShow ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex justify-end">
@@ -77,7 +77,7 @@ const MobileNav = () => {
         </nav>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MobileNav
+export default MobileNav;
