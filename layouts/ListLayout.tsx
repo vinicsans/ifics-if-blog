@@ -72,6 +72,14 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
   );
 }
 
+const notFound = () => {
+  return (
+    <div className="flex justify-center items-center">
+      Não encontrei nenhuma história...
+    </div>
+  )
+}
+
 export default function ListLayout({
   posts,
   initialDisplayPosts = [],
@@ -128,7 +136,9 @@ export default function ListLayout({
           </div>
         </div>
         <ul>
-          {!filteredBlogPosts.length && "No posts found."}
+          <div className={!filteredBlogPosts.length ? "mt-2" : "mt-0"} >
+            {!filteredBlogPosts.length && "Nenhuma história encontrada"}
+          </div>
           {displayPosts.map((post) => {
             const { path, title, summary, tags } = post;
             return (
