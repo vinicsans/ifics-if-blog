@@ -52,12 +52,7 @@ export default function PostLayout({
               <div>
                 <dt className="sr-only">Published on</dt>
                 <dd className="text-base font-medium leading-6 text-amber-500">
-                  <time dateTime={date}>
-                    {new Date(date).toLocaleDateString(
-                      siteMetadata.locale,
-                      postDateTemplate
-                    ).toUpperCase()}
-                  </time>
+                  2023
                 </dd>
               </div>
               <div>
