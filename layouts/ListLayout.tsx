@@ -7,6 +7,11 @@ import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 
+import Image from 'next/image'
+import ImageSrc1 from "../public/static/images/image1.png"
+import SparklesIcon from "../public/static/images/sparkle.svg"
+import ArrowRightIcon from "../public/static/images/arrow-right.svg"
+
 interface PaginationProps {
   totalPages: number
   currentPage: number
@@ -19,8 +24,7 @@ interface ListLayoutProps {
 }
 
 function Pagination({ totalPages, currentPage }: PaginationProps) {
-  const router = useRouter()
-  const basePath = router.pathname.split('/')[1]
+  const basePath = "blog"
   const prevPage = currentPage - 1 > 0
   const nextPage = currentPage + 1 <= totalPages
 
@@ -29,7 +33,7 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
       <nav className="flex justify-between">
         {!prevPage && (
           <button className="cursor-auto disabled:opacity-50" disabled={!prevPage}>
-            Previous
+            Anterior
           </button>
         )}
         {prevPage && (
@@ -37,20 +41,20 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
             href={currentPage - 1 === 1 ? `/${basePath}/` : `/${basePath}/page/${currentPage - 1}`}
             rel="prev"
           >
-            Previous
+            Anterior
           </Link>
         )}
         <span>
-          {currentPage} of {totalPages}
+          {currentPage} de {totalPages}
         </span>
         {!nextPage && (
           <button className="cursor-auto disabled:opacity-50" disabled={!nextPage}>
-            Next
+            Próxima
           </button>
         )}
         {nextPage && (
           <Link href={`/${basePath}/page/${currentPage + 1}`} rel="next">
-            Next
+            Próxima
           </Link>
         )}
       </nav>
@@ -60,7 +64,6 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
 
 export default function ListLayout({
   posts,
-  title,
   initialDisplayPosts = [],
   pagination,
 }: ListLayoutProps) {
@@ -76,20 +79,23 @@ export default function ListLayout({
 
   return (
     <>
-      <div className="divide-y divide-gray-200 dark:divide-gray-700">
-        <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            {title}
+      <div className="divide-y divide-slate-500  bg-slate-950">
+        <div className="pt-6 pb-8 md:space-y-5">
+          <h1 className="text-3xl flex font-extrabold leading-9 tracking-tight text-amber-500 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+              As Fanfics de 2° Redes
+              <SparklesIcon className="w-16 h-16 ml-4" />
           </h1>
+          <p className="text-xl mb-4">Um conjunto de histórias baseadas em contos de Alan Poe.</p>
+
           <div className="relative max-w-lg">
             <label>
-              <span className="sr-only">Search articles</span>
+              <span className="sr-only">Procurar histórias...</span>
               <input
-                aria-label="Search articles"
+                aria-label="Procurar histórias..."
                 type="text"
                 onChange={(e) => setSearchValue(e.target.value)}
-                placeholder="Search articles"
-                className="block w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-900 dark:bg-gray-800 dark:text-gray-100"
+                placeholder="Procurar histórias..."
+                className="block w-full rounded-md border text-slate-200 placeholder-slate-400 border-slate-600 bg-slate-700 px-4 py-2 focus:border-amber-500 focus:ring-amber-500 "
               />
             </label>
             <svg
@@ -111,32 +117,32 @@ export default function ListLayout({
         <ul>
           {!filteredBlogPosts.length && 'No posts found.'}
           {displayPosts.map((post) => {
-            const { path, date, title, summary, tags } = post
+            const { path, title, summary, tags } = post
             return (
-              <li key={path} className="py-4">
-                <article className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
-                  <dl>
-                    <dt className="sr-only">Published on</dt>
-                    <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                      <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
-                    </dd>
-                  </dl>
-                  <div className="space-y-3 xl:col-span-3">
+              <li key={path} className="py-6 flex items-center justify-center flex-col border-b border-slate-500">
+                <article className="flex items-center">
+                  <div className="w-56 h-56 mr-6 md:w-48 md:h-48 sm:w-32 sm:h-32 max-sm:h-32 max-sm:w-32">
+                    <Image 
+                      src={ImageSrc1}
+                      alt="null"
+                      className='h-full w-full rounded-3xl'
+                    />
+                  </div>
+                  <div className="w-4/5">
                     <div>
-                      <h3 className="text-2xl font-bold leading-8 tracking-tight">
-                        <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
+                      <h3 className="text-2xl font-bold leading-8 tracking-tight sm:text-xl max-sm:text-xl mb-2">
+                        <Link href={`/${path}`} className="text-amber-500">
                           {title}
                         </Link>
                       </h3>
-                      <div className="flex flex-wrap">
-                        {tags.map((tag) => (
-                          <Tag key={tag} text={tag} />
-                        ))}
-                      </div>
                     </div>
-                    <div className="prose max-w-none text-gray-500 dark:text-gray-400">
+                    <div className="prose max-w-none text-slate-200 text-base max-sm:text-sm">
                       {summary}
                     </div>
+                    <a href={`/${path}`} className='text-amber-500 flex items-center py-2'>
+                      Ler história
+                      <ArrowRightIcon className="fill-amber-500 ml-2 h-8"/>
+                    </a>
                   </div>
                 </article>
               </li>
