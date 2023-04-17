@@ -31,14 +31,14 @@ export default function PostLayout({
     <SectionContainer>
       <BlogSEO url={`${siteMetadata.siteUrl}/${path}`} {...content} />
       <ScrollTopAndComment />
-      <article>
+      <article className="text-amber-500">
         <div>
           <header>
             <div className="space-y-1 border-b border-gray-200 pb-10 text-center dark:border-gray-700">
               <dl>
                 <div>
                   <dt className="sr-only">Published on</dt>
-                  <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                  <dd className="text-base font-medium leading-6 text-amber-500">
                     <time dateTime={date}>
                       {formatDate(date, siteMetadata.locale)}
                     </time>
@@ -52,28 +52,10 @@ export default function PostLayout({
           </header>
           <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8 dark:divide-gray-700 xl:divide-y-0">
             <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
-              <div className="prose max-w-none pb-8 pt-10 dark:prose-dark">
+              <div className="prose max-w-none pb-8 pt-10 dark:prose-dark text-slate-200">
                 {children}
               </div>
             </div>
-            {siteMetadata.comments && (
-              <div
-                className="pb-6 pt-6 text-center text-gray-700 dark:text-gray-300"
-                id="comment"
-              >
-                {!loadComments && (
-                  <button onClick={() => setLoadComments(true)}>
-                    Load Comments
-                  </button>
-                )}
-                {loadComments && (
-                  <Comments
-                    commentsConfig={siteMetadata.comments}
-                    slug={slug}
-                  />
-                )}
-              </div>
-            )}
             <footer>
               <div className="flex flex-col text-sm font-medium sm:flex-row sm:justify-between sm:text-base">
                 {prev && (

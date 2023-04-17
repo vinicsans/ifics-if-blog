@@ -8,8 +8,8 @@ const siteMetadata = {
   description: 'Um compilado de histórias feitas apartir dos contos de Alan Poe.',
   language: 'en-us',
   theme: 'dark', // system, dark or light
-  siteUrl: 'https://tailwind-nextjs-starter-blog.vercel.app',
-  siteRepo: 'https://github.com/timlrx/tailwind-nextjs-starter-blog',
+  siteUrl: 'https://ifics.vercel.app',
+  siteRepo: 'https://github.com/vinicsans/ifics-if-blog',
   siteLogo: '/static/images/logo.png',
   image: '/static/images/avatar.png',
   socialBanner: '/static/images/twitter-card.png',

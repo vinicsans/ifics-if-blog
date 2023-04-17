@@ -51,14 +51,14 @@ export default function PostLayout({
         {...content}
       />
       <ScrollTopAndComment />
-      <article>
-        <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
+      <article className="text-amber-500">
+        <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700 text-amber-500">
           <header className="pt-6 xl:pb-6">
             <div className="space-y-1 text-center">
               <dl className="space-y-10">
                 <div>
                   <dt className="sr-only">Published on</dt>
-                  <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                  <dd className="text-base font-medium leading-6 text-amber-500">
                     <time dateTime={date}>
                       {new Date(date).toLocaleDateString(
                         siteMetadata.locale,
@@ -94,7 +94,7 @@ export default function PostLayout({
                       )}
                       <dl className="whitespace-nowrap text-sm font-medium leading-5">
                         <dt className="sr-only">Name</dt>
-                        <dd className="text-gray-900 dark:text-gray-100">
+                        <dd className="text-amber-500">
                           {author.name}
                         </dd>
                         <dt className="sr-only">Twitter</dt>
@@ -121,7 +121,7 @@ export default function PostLayout({
               <div className="prose max-w-none pb-8 pt-10 dark:prose-dark">
                 {children}
               </div>
-              <div className="pb-6 pt-6 text-sm text-gray-700 dark:text-gray-300">
+              <div className="pb-6 pt-6 text-sm text-amber-500">
                 <Link href={discussUrl(path)} rel="nofollow">
                   Discuss on Twitter
                 </Link>
@@ -151,7 +151,7 @@ export default function PostLayout({
               <div className="divide-gray-200 text-sm font-medium leading-5 dark:divide-gray-700 xl:col-start-1 xl:row-start-2 xl:divide-y">
                 {tags && (
                   <div className="py-4 xl:py-8">
-                    <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                    <h2 className="text-xs uppercase tracking-wide text-amber-500">
                       Tags
                     </h2>
                     <div className="flex flex-wrap">

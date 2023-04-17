@@ -94,8 +94,7 @@ export default function ListLayout({
       <div className="divide-y divide-slate-500  bg-slate-950">
         <div className="pb-8 pt-6 md:space-y-5">
           <h1 className="flex text-3xl font-extrabold leading-9 tracking-tight text-amber-500 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            As Fanfics de 2° Redes
-            <SparklesIcon className="ml-4 h-16 w-16" />
+            As Fanfics de 2° <span className="flex items-center justify-center"> Redes <SparklesIcon className="ml-4 h-12 w-12 max-sm:h-8 max-sm:w-8" /></span> 
           </h1>
           <p className="mb-4 text-xl">
             Um conjunto de histórias baseadas em contos de Alan Poe.
@@ -139,11 +138,13 @@ export default function ListLayout({
               >
                 <article className="flex items-center">
                   <div className="mr-6 h-56 w-56 max-sm:h-32 max-sm:w-32 sm:h-32 sm:w-32 md:h-48 md:w-48">
-                    <Image
-                      src={ImageSrc1}
-                      alt="null"
-                      className="h-full w-full rounded-3xl"
-                    />
+                    <a href={`/${path}`}>
+                      <Image
+                        src={ImageSrc1}
+                        alt="null"
+                        className="h-full w-full rounded-3xl"
+                      />
+                    </a>
                   </div>
                   <div className="w-4/5">
                     <div>
@@ -157,8 +158,8 @@ export default function ListLayout({
                       {summary}
                     </div>
                     <a
-                      href={`/${path}`}
                       className="flex items-center py-2 text-amber-500"
+                      href={`/${path}`}
                     >
                       Ler história
                       <ArrowRightIcon className="ml-2 h-8 fill-amber-500" />

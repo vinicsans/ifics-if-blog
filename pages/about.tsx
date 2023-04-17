@@ -5,6 +5,7 @@ import { MDXLayoutRenderer } from "pliny/mdx-components";
 import { MDXComponents } from "@/components/MDXComponents";
 
 import AuthorContent from "../components/AuthorContent";
+import PageTitle from "@/components/PageTitle";
 
 export const getStaticProps = async () => {
   const author = allAuthors.find((p) => p.slug === "default");
@@ -16,9 +17,9 @@ export default function About({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <div>
-      <h1 className="mb-4 flex text-xl font-extrabold tracking-tight text-amber-500 sm:text-4xl sm:leading-10 md:text-4xl md:leading-14">
+      <PageTitle>
         Sobre o autor
-      </h1>
+      </PageTitle>
       <AuthorContent />
     </div>
   );
