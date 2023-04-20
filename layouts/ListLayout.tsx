@@ -106,7 +106,7 @@ export default function ListLayout({
             As Fanfics de 2° <span className="flex items-center justify-center"> Redes <SparklesIcon className="ml-4 h-12 w-12 max-sm:h-8 max-sm:w-8" /></span> 
           </h1>
           <p className="mb-4 text-xl">
-            Um conjunto de histórias baseadas em contos de Alan Poe.
+            Um conjunto de histórias baseadas em contos de Allan Poe.
           </p>
 
           <div className="relative max-w-lg">
